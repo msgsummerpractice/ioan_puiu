@@ -16,6 +16,9 @@ public class App {
       obj.setMessage("Hello Spring!");
       obj.getMessage();
 
+      GreetingService greetingService = context.getBean(GreetingService.class);
+      greetingService.greet();
+
      
    }
 }
