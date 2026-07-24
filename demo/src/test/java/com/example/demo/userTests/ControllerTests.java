@@ -31,6 +31,18 @@ public class ControllerTests {
                 .andExpect(status().isOk()).andExpect(content().json("[{\"id\":3,\"name\":\"John\",\"email\":\"john@email.com\"}, {\"id\":2,\"name\":\"John Doe\",\"email\":\"john.doe@email.com\"}]"));
     }
 
+    @Test
+    void testGetUserById() throws Exception {
+        mockMvc.perform(get("/users/3"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value(3))
+                .andExpect(jsonPath("$.name").value("John"))
+                .andExpect(jsonPath("$.email").value("john@email.com"));
+
+    }
+
+    
+
 
 
 }
