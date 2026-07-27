@@ -2,6 +2,9 @@ package com.example.DBdemo.Controller;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -26,40 +29,41 @@ public class UserController {
     }
 
     @GetMapping
-    public List<User> getAllUsers() {
-        return userService.findAllUsers();
+    public ResponseEntity<List<User>> getAllUsers() {
+        return ResponseEntity.ok().body(userService.findAllUsers());
     }
 
     @PostMapping
-    public User createUser(@RequestBody User user) {
-        return userService.createUser(user);
+    public ResponseEntity<User> createUser(@RequestBody User user) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(userService.createUser(user));
     }
 
     @PutMapping("/{id}")
-    public User updateUser(@PathVariable Long id, @RequestBody User userDetails) {
+    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User userDetails) {
         User user = userService.getUserById(id);
         if (user == null) {
             throw new RuntimeException("User not found");
         }
-        return userService.updateUser(id, userDetails);
+        return ResponseEntity.ok().body(userService.updateUser(id, userDetails));
     }
 
     @DeleteMapping("/{id}")
-    public User deleteUser(@PathVariable Long id) {
+    public ResponseEntity<User> deleteUser(@PathVariable Long id) {
         User user = userService.getUserById(id);
         if (user == null) {
             throw new RuntimeException("User not found");
         }
-        return userService.removeUser(user);
+        userService.removeUser(user);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
     @PatchMapping("/{id}")
-    public User patchUser(@PathVariable Long id, @RequestBody User userDetails) {
+    public ResponseEntity<User> patchUser(@PathVariable Long id, @RequestBody User userDetails) {
         User user = userService.getUserById(id);
         if (user == null) {
             throw new RuntimeException("User not found");
         }
-        return userService.partialUpdateUser(id, userDetails);
+        return ResponseEntity.ok().body(userService.partialUpdateUser(id, userDetails));
     }
 
 
