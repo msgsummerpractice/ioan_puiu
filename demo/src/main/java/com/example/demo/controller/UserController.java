@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,12 +23,12 @@ import com.example.demo.model.User;
 import com.example.demo.service.UserService;
 
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Min;
 
 @RestController
 @RequestMapping("/users")
 public class UserController {
 
-    @Autowired
     private ControllerConfig controllerConfig;
 
     @Value("${log.text}")
@@ -37,9 +38,12 @@ public class UserController {
 
     private static final Logger logger = LoggerFactory.getLogger(UserController.class); 
 
+    private record ErrorResponse(String message) {}
+
     
-    public UserController(UserService userService) {
+    public UserController(UserService userService, ControllerConfig controllerConfig) {
         this.userService = userService;
+        this.controllerConfig = controllerConfig;
     }
     
     @GetMapping("/all")
@@ -49,14 +53,16 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public User getUserById(@Valid @PathVariable Long id) {
+    public ResponseEntity<?> getUserById(@Min(value = 1, message = "ID must be at least 1") @PathVariable Long id) {
+
         logger.info("Fetching user with id: {} {}", id, logSufix);
         
         Optional<User> user = userService.getUserById(id);
         if (user.isPresent()) {
-            return user.get();
+            return ResponseEntity.ok(user.get());
         } else {
-            throw new RuntimeException("User not found with id: " + id);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(new ErrorResponse("User not found with id: " + id));
         }
     }
 
