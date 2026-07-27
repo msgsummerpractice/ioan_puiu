@@ -20,7 +20,7 @@ import com.example.demo.repository.UserRepository;
 import com.example.demo.service.UserService;
 
 @ExtendWith(MockitoExtension.class)
-public class ServiceTests {
+public class UserServiceTests {
 
     @Mock
     private UserRepository userRepository;

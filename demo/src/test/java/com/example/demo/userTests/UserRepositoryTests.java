@@ -13,7 +13,7 @@ import static org.mockito.Mockito.verify;
 import java.util.Arrays;
 
 @ExtendWith(MockitoExtension.class)
-public class RepoTests {
+public class UserRepositoryTests {
 
     @Spy
     private UserRepository userRepository;
