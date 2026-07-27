@@ -41,4 +41,12 @@ public class UserService {
         return userRepository.findByEmail(email);
     }
 
+    public List<User> searchUsersByUsername(String username) {
+        return userRepository.findTop10ByUsernameContainingIgnoreCaseOrderByUsernameAsc(username);
+    }
+
+    public Integer countUsers() {
+        return userRepository.countUsers();
+    }
+
 }

@@ -66,6 +66,21 @@ public class UserServiceTests {
         verify(userRepository).findAll();
     }
 
+    @Test
+    public void shouldSearchUsersByUsernameIfValid() {
+        String username = "test";
+        when(userRepository.findTop10ByUsernameContainingIgnoreCaseOrderByUsernameAsc(username)).thenReturn(java.util.Collections.emptyList());
+        userService.searchUsersByUsername(username);
+        verify(userRepository).findTop10ByUsernameContainingIgnoreCaseOrderByUsernameAsc(username);
+    }
+
+    @Test
+    public void shouldCountUsers() {
+        when(userRepository.countUsers()).thenReturn(5);
+        userService.countUsers();
+        verify(userRepository).countUsers();
+    }
+
 
     
 }
