@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.repository.UserRepository;
+import java.util.Optional;
 
 import java.util.List;
 
@@ -19,12 +20,12 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public User getUserById(Long id) {
+    public Optional<User> getUserById(Long id) {
         return userRepository.getUserById(id);
     }
 
-    public void addUser(User user) {
-        userRepository.addUser(user);
+    public User addUser(User user) {
+        return userRepository.addUser(user);
     }
 
     public List<User> getAllUsers() {

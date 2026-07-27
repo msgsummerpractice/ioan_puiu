@@ -1,7 +1,8 @@
 package com.example.demo.repository;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.ArrayList;
 
 import org.springframework.stereotype.Repository;
 
@@ -24,17 +25,15 @@ public class UserRepository {
         return userlist;
     }
 
-    public User getUserById(Long id) {
-        for (User user : userlist) {
-            if (user.getId().equals(id)) {
-                return user;
-            }
-        }
-        return null;
+    public Optional<User> getUserById(Long id) {
+        return userlist.stream().filter(user -> user.getId().equals(id)).findFirst();
     }
 
-    public void addUser(User user) {
+    public User addUser(User user) {
         userlist.add(user);
+        return user;
     }
+
+
 
 }
