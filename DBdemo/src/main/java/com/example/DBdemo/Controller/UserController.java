@@ -56,49 +56,29 @@ public class UserController {
     @PostMapping
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity<UserResponse> createUser(@Valid @RequestBody UserRequest userRequest) {
-        try {
-            UserResponse userResponse = userService.createUser(userRequest);
-            return ResponseEntity.status(HttpStatus.CREATED).body(userResponse);
-        } catch (RuntimeException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-        }
-        
+        UserResponse userResponse = userService.createUser(userRequest);
+        return ResponseEntity.status(HttpStatus.CREATED).body(userResponse);
     }
 
     @PutMapping("/{id}")
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity<UserResponse> updateUser(@PathVariable Long id, @Valid @RequestBody UserRequest userRequest) {
-        try {
-            UserResponse userResponse = userService.updateUser(id, userRequest);
-            return ResponseEntity.ok().body(userResponse);
-        } catch (RuntimeException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
+        UserResponse userResponse = userService.updateUser(id, userRequest);
+        return ResponseEntity.ok().body(userResponse);
     }
 
     @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<UserResponse> deleteUser(@PathVariable Long id) {
-        try {
-            userService.removeUserById(id);
-            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-        } catch (RuntimeException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
-        
+        userService.removeUserById(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
     @PatchMapping("/{id}")
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity<UserResponse> patchUser(@PathVariable Long id, @Valid @RequestBody UserPatchRequest userPatchRequest) {
-        try {
-            UserResponse userResponse = userService.partialUpdateUser(id, userPatchRequest);
-            return ResponseEntity.ok().body(userResponse);
-        } catch (RuntimeException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
-
-
+        UserResponse userResponse = userService.partialUpdateUser(id, userPatchRequest);
+        return ResponseEntity.ok().body(userResponse);
     }
 
     @GetMapping("/secure")

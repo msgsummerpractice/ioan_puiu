@@ -13,6 +13,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import com.example.DBdemo.Model.User;
 import org.modelmapper.ModelMapper;
+import com.example.DBdemo.Exception.UserNotFoundException;
 
 @Service
 public class UserService {
@@ -44,7 +45,7 @@ public class UserService {
         modelMapper.getConfiguration().setSkipNullEnabled(true);
 
         User user = userRepository.findById(id).orElseThrow(() 
-        -> new RuntimeException("User not found"));
+        -> new UserNotFoundException("User not found"));
 
         modelMapper.map(userRequest, user);
 
@@ -67,7 +68,7 @@ public class UserService {
         modelMapper.getConfiguration().setSkipNullEnabled(true);
 
         User user = userRepository.findById(id).orElseThrow(() 
-        -> new RuntimeException("User not found"));
+        -> new UserNotFoundException("User not found"));
 
         modelMapper.map(userPatchRequest, user);
 
@@ -81,7 +82,7 @@ public class UserService {
         if (user.isPresent()) {
             return user.get();
         } else {
-            throw new RuntimeException("User not found");
+            throw new UserNotFoundException("User not found");
         }
     }
 
@@ -97,25 +98,25 @@ public class UserService {
     }
 
     public User removeUserById(Long id) {
-        User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
+        User user = userRepository.findById(id).orElseThrow(() -> new UserNotFoundException("User not found"));
         this.removeUser(user);
         return user;
     }
 
     public User removeUser(User user) {
         if(!userRepository.findById(user.getId()).isPresent()) {
-            throw new RuntimeException("User not found");
+            throw new UserNotFoundException("User not found");
         }
         userRepository.delete(user);
         return user;
     }
 
     public User getUserByUsername(String username) {
-        return userRepository.findByUsername(username).orElseThrow(() -> new RuntimeException("User not found"));
+        return userRepository.findByUsername(username).orElseThrow(() -> new UserNotFoundException("User not found"));
     }
 
     public User getUserByEmail(String email) {
-        return userRepository.findByEmail(email).orElseThrow(() -> new RuntimeException("User not found"));
+        return userRepository.findByEmail(email).orElseThrow(() -> new UserNotFoundException("User not found"));
     }
 
     public List<User> searchUsersByUsername(String username) {
