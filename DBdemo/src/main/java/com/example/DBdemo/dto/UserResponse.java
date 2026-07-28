@@ -1,6 +1,5 @@
 package com.example.DBdemo.dto;
 
-import java.time.LocalDateTime;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -19,6 +18,6 @@ public class UserResponse {
     private String firstname;
     private String lastname;
     private String email;
-    private LocalDateTime createdAt;
+    
 
 }

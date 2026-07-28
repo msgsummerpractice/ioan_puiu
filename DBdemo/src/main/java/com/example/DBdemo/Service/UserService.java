@@ -4,7 +4,6 @@ import com.example.DBdemo.Repository.UserRepository;
 import com.example.DBdemo.dto.UserRequest;
 import com.example.DBdemo.dto.UserPatchRequest;
 import com.example.DBdemo.dto.UserResponse;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,7 +29,6 @@ public class UserService {
         
         return users.stream().map(user -> {
             UserResponse userResponse = modelMapper.map(user, UserResponse.class);
-            userResponse.setCreatedAt(LocalDateTime.now());
             return userResponse;
         }).toList();
     }
@@ -48,7 +46,6 @@ public class UserService {
         modelMapper.map(userRequest, user);
 
         UserResponse userResponse = modelMapper.map(userRepository.save(user), UserResponse.class);
-        userResponse.setCreatedAt(LocalDateTime.now());
         return userResponse;
     }
 
@@ -62,7 +59,6 @@ public class UserService {
         modelMapper.map(userPatchRequest, user);
 
         UserResponse userResponse = modelMapper.map(userRepository.save(user), UserResponse.class);
-        userResponse.setCreatedAt(LocalDateTime.now());
         return userResponse;
 
     }
@@ -83,7 +79,6 @@ public class UserService {
         User user = modelMapper.map(userRequest, User.class);
 
         UserResponse userResponse = modelMapper.map(userRepository.save(user), UserResponse.class);
-        userResponse.setCreatedAt(LocalDateTime.now());
         return userResponse;
         
     }

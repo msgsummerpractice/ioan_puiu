@@ -1,5 +1,6 @@
 package com.example.DBdemo.Controller;
 
+import org.springframework.http.MediaType;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -22,7 +23,10 @@ import com.example.DBdemo.dto.UserResponse;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping(value = "/api/users", produces = {
+    MediaType.APPLICATION_JSON_VALUE,
+    MediaType.APPLICATION_XML_VALUE
+})
 public class UserController {
 
     private UserService userService;
