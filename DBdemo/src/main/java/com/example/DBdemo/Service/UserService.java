@@ -1,62 +1,69 @@
 package com.example.DBdemo.Service;
 
 import com.example.DBdemo.Repository.UserRepository;
-
+import com.example.DBdemo.dto.UserRequest;
+import com.example.DBdemo.dto.UserPatchRequest;
+import com.example.DBdemo.dto.UserResponse;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 import com.example.DBdemo.Model.User;
+import org.modelmapper.ModelMapper;
 
 @Service
 public class UserService {
 
     private final UserRepository userRepository;
-
+    
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
+        
     }
 
-    public List<User> findAllUsers() {
-        return userRepository.findAll();
+    public List<UserResponse> findAllUsers() {
+        ModelMapper modelMapper = new ModelMapper();
+        modelMapper.getConfiguration().setSkipNullEnabled(true);
+
+        List<User> users = userRepository.findAll();
+        
+        return users.stream().map(user -> {
+            UserResponse userResponse = modelMapper.map(user, UserResponse.class);
+            userResponse.setCreatedAt(LocalDateTime.now());
+            return userResponse;
+        }).toList();
     }
 
-    public User updateUser(Long id, User userDetails) {
+
+    
+
+    public UserResponse updateUser(Long id, UserRequest userRequest) {
+        ModelMapper modelMapper = new ModelMapper();
+        modelMapper.getConfiguration().setSkipNullEnabled(true);
+
         User user = userRepository.findById(id).orElseThrow(() 
         -> new RuntimeException("User not found"));
 
-        user.setFirstname(userDetails.getFirstname());
-        user.setLastname(userDetails.getLastname());
-        user.setUsername(userDetails.getUsername());
-        user.setEmail(userDetails.getEmail());
-        user.setPassword(userDetails.getPassword());
-        return userRepository.save(user);
+        modelMapper.map(userRequest, user);
+
+        UserResponse userResponse = modelMapper.map(userRepository.save(user), UserResponse.class);
+        userResponse.setCreatedAt(LocalDateTime.now());
+        return userResponse;
     }
 
-    public User partialUpdateUser(Long id, User userDetails) {
+    public UserResponse partialUpdateUser(Long id, UserPatchRequest userPatchRequest) {
+        ModelMapper modelMapper = new ModelMapper();
+        modelMapper.getConfiguration().setSkipNullEnabled(true);
+
         User user = userRepository.findById(id).orElseThrow(() 
         -> new RuntimeException("User not found"));
 
-        if (userDetails.getFirstname() != null) {
-            user.setFirstname(userDetails.getFirstname());
-        }
-        if (userDetails.getLastname() != null) {
-            user.setLastname(userDetails.getLastname());
-        }
-        if (userDetails.getUsername() != null)
-        {
-            user.setUsername(userDetails.getUsername());
-        }
-        if (userDetails.getEmail() != null)
-        {
-            user.setEmail(userDetails.getEmail());
-        }
-        if (userDetails.getPassword() != null)
-        {
-            user.setPassword(userDetails.getPassword());
-        }
+        modelMapper.map(userPatchRequest, user);
 
-        return userRepository.save(user);
+        UserResponse userResponse = modelMapper.map(userRepository.save(user), UserResponse.class);
+        userResponse.setCreatedAt(LocalDateTime.now());
+        return userResponse;
 
     }
 
@@ -69,11 +76,28 @@ public class UserService {
         }
     }
 
-    public User createUser(User user) {
-        return userRepository.save(user);
+    public UserResponse createUser(UserRequest userRequest) {
+        ModelMapper modelMapper = new ModelMapper();
+        modelMapper.getConfiguration().setSkipNullEnabled(true);
+        
+        User user = modelMapper.map(userRequest, User.class);
+
+        UserResponse userResponse = modelMapper.map(userRepository.save(user), UserResponse.class);
+        userResponse.setCreatedAt(LocalDateTime.now());
+        return userResponse;
+        
+    }
+
+    public User removeUserById(Long id) {
+        User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
+        this.removeUser(user);
+        return user;
     }
 
     public User removeUser(User user) {
+        if(!userRepository.findById(user.getId()).isPresent()) {
+            throw new RuntimeException("User not found");
+        }
         userRepository.delete(user);
         return user;
     }
