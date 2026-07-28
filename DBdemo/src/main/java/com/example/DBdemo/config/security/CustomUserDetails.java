@@ -5,6 +5,8 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import com.example.DBdemo.Model.User;
 import java.util.Collection;
+
+
 public class CustomUserDetails implements UserDetails {
 
     private final User user;
