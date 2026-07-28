@@ -5,7 +5,6 @@ import com.example.DBdemo.Service.UserService;
 import com.example.DBdemo.dto.UserPatchRequest;
 import com.example.DBdemo.dto.UserRequest;
 import com.example.DBdemo.dto.UserResponse;
-import jakarta.servlet.ServletException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +15,6 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.never;
@@ -168,11 +166,12 @@ public class UserControllerTest {
         when(userService.updateUser(anyLong(), any(UserRequest.class)))
                 .thenThrow(new RuntimeException("User not found"));
 
-        assertThrows(ServletException.class, () ->
-                mockMvc.perform(put("/api/users/999")
+        mockMvc.perform(put("/api/users/999")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(userJson))
-        );
+                .andExpect(status().isNotFound())
+                .andExpect(jsonPath("$.status").value(404))
+                .andExpect(jsonPath("$.message").value("User not found"));
     }
 
     @Test
@@ -188,7 +187,10 @@ public class UserControllerTest {
         when(userService.removeUserById(anyLong()))
                 .thenThrow(new RuntimeException("User not found"));
 
-        assertThrows(ServletException.class, () -> mockMvc.perform(delete("/api/users/999")));
+        mockMvc.perform(delete("/api/users/999"))
+                .andExpect(status().isNotFound())
+                .andExpect(jsonPath("$.status").value(404))
+                .andExpect(jsonPath("$.message").value("User not found"));
     }
 
     @Test
