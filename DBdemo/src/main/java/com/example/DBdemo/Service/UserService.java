@@ -6,6 +6,9 @@ import com.example.DBdemo.dto.UserPatchRequest;
 import com.example.DBdemo.dto.UserResponse;
 import java.util.List;
 import java.util.Optional;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.PageRequest;
 
 import org.springframework.stereotype.Service;
 import com.example.DBdemo.Model.User;
@@ -47,6 +50,16 @@ public class UserService {
 
         UserResponse userResponse = modelMapper.map(userRepository.save(user), UserResponse.class);
         return userResponse;
+    }
+
+    public Page<UserResponse> findUsersPaged(int page, int size) {
+        ModelMapper modelMapper = new ModelMapper();
+        modelMapper.getConfiguration().setSkipNullEnabled(true);
+
+        Pageable pageable = PageRequest.of(page, size);
+        Page<User> userPage = userRepository.findAll(pageable);
+
+        return userPage.map(user -> modelMapper.map(user, UserResponse.class));
     }
 
     public UserResponse partialUpdateUser(Long id, UserPatchRequest userPatchRequest) {
