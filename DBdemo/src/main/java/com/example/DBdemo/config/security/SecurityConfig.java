@@ -32,25 +32,37 @@ public class SecurityConfig {
 
         http
             .csrf(csrf -> csrf.disable())
+ 
             .authorizeHttpRequests(auth -> auth
+ 
                     .requestMatchers(
                             "/login",
                             "/css/**",
                             "/js/**"
                     )
                     .permitAll()
-                    .requestMatchers("/api/users/**")
-                    .authenticated()
+ 
+                    .requestMatchers(
+                        "/api/users/**",
+                        "/api/users"
+                    )
+                    .hasAnyRole("USER","ADMIN")
+ 
                     .anyRequest()
                     .authenticated()
+                   
             )
             .httpBasic(Customizer.withDefaults())
-            .formLogin(form -> form
-                    .loginPage("/login")
-                    .usernameParameter("email")
-                    .permitAll()
+ 
+            .formLogin(
+                    form -> form
+                            .loginPage("/login")
+                            .usernameParameter("username")
+                            .passwordParameter("password")
+                            .permitAll()
             );
-
+ 
+ 
         return http.build();
     }
 
