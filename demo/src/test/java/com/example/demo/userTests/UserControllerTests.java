@@ -32,6 +32,14 @@ public class UserControllerTests {
     }
 
     @Test
+    public void shouldAddUserWhenNOTValid() throws Exception {
+        when(userService.addUser(new com.example.demo.model.User(2L, "John Doe", "john.doe@email.com"))).thenReturn(new com.example.demo.model.User(2L, "John Doe", "john.doe@email.com"));
+        mockMvc.perform(post("/users/add")
+                .content("{\"id\":2,\"name\":\"John Doe\",\"email\":\"john.doeemail.com\"}")
+                .contentType("application/json")).andExpect(status().isBadRequest());
+    }
+
+    @Test
     public void shouldFetchAllUsers() throws Exception {
         when(userService.getAllUsers()).thenReturn(java.util.Arrays.asList(new com.example.demo.model.User(3L, "John", "john@email.com"), new com.example.demo.model.User(2L, "John Doe", "john.doe@email.com")));
         mockMvc.perform(get("/users/all"))
