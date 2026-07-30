@@ -5,10 +5,20 @@ import { MatToolbar } from '@angular/material/toolbar';
 import { ComponentaMeaPuternica } from './componenta-mea-puternica/componenta-mea-puternica';
 import { dogscript } from './dogscript';
 import { forkJoin } from 'rxjs/internal/observable/forkJoin';
+import { Observable } from 'rxjs';
+import { MatIcon } from '@angular/material/icon';
+import { AuthenticatedCheckDirective } from './authenticated-check-directive';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, MatButton, MatToolbar, ComponentaMeaPuternica],
+  imports: [
+    RouterOutlet,
+    MatButton,
+    MatToolbar,
+    ComponentaMeaPuternica,
+    MatIcon,
+    AuthenticatedCheckDirective,
+  ],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
