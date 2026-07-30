@@ -27,11 +27,11 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class SecurityConfig {
 
-    private UserDetailsService userDetailsService;
+    // private final UserDetailsService userDetailsService;
 
-    private JwtAuthenticationEntryPoint authenticationEntryPoint;
+    private final JwtAuthenticationEntryPoint authenticationEntryPoint;
 
-    private JwtAuthenticationFilter authenticationFilter;
+    private final JwtAuthenticationFilter authenticationFilter;
 
     @Bean
     public PasswordEncoder passwordEncoder(){
