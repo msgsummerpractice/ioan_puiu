@@ -1,9 +1,14 @@
 import { Component } from '@angular/core';
+import { AuthService } from '../auth-service';
+import { inject } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-login-component',
-  imports: [],
+  imports: [MatIconModule],
   templateUrl: './login-component.html',
   styleUrl: './login-component.css',
 })
-export class LoginComponent {}
+export class LoginComponent {
+  protected readonly authService = inject(AuthService);
+}

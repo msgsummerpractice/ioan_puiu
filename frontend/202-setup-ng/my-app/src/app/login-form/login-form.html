@@ -1,0 +1,19 @@
+<form novalidate [formGroup]="loginFormGroup" (ngSubmit)="onFormSubmit()">
+  <label for="username">username:</label>
+  <input type="text" id="username" formControlName="username" />
+
+  <!--Can also be checked specifically by error name when there are multiple validations for the same field like so:-->
+  <!--dogFormGroup.controls.username.hasError('required')-->
+  @if (loginFormGroup.controls.username.invalid) {
+    <small class="text-error">username is required.</small>
+  }
+
+  <label for="password">password:</label>
+  <input type="password" id="password" formControlName="password" />
+
+  <!--Since this button is of type submit,
+   it will automatically trigger the form submission through the (ngSubmit) event-->
+  @if (loginFormGroup.valid) {
+    <button type="submit">Submit</button>
+  }
+</form>

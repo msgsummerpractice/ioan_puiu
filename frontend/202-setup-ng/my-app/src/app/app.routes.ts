@@ -10,7 +10,7 @@ export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   {
     path: 'login',
-    loadComponent: () => import('./login-component/login-component').then((m) => m.LoginComponent),
+    loadComponent: () => import('./login-form/login-form').then((m) => m.LoginFormComponent),
   },
   { path: '**', component: NotFoundComponent },
 ];

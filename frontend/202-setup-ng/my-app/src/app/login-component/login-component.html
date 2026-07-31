@@ -1,3 +1,8 @@
 <div class="p-8 text-center">
   <h1 class="text-3xl font-bold">Login</h1>
+  @if (!authService.isAuthenticated()) {
+    <button mat-icon-button aria-label="Login" (click)="authService.login()">
+      <mat-icon>login</mat-icon>
+    </button>
+  }
 </div>
