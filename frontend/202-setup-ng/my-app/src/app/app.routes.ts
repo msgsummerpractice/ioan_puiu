@@ -3,9 +3,10 @@ import { HomeComponent } from './home-component/home-component';
 import { NotFoundComponent } from './not-found-component/not-found-component';
 import { App } from './app';
 import { bootstrapApplication } from '@angular/platform-browser';
+import { authGuard } from './auth-guard';
 
 export const routes: Routes = [
-  { path: 'home', component: HomeComponent },
+  { path: 'home', component: HomeComponent, canActivate: [authGuard] },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   {
     path: 'login',
@@ -13,7 +14,3 @@ export const routes: Routes = [
   },
   { path: '**', component: NotFoundComponent },
 ];
-
-bootstrapApplication(App, {
-  providers: [provideRouter(routes)],
-});

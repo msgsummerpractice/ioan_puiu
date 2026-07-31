@@ -1,4 +1,16 @@
-import { Service } from '@angular/core';
+import { Injectable, Service, signal } from '@angular/core';
 
-@Service()
-export class AuthService {}
+@Injectable({
+  providedIn: 'root',
+})
+export class AuthService {
+  isAuthenticated = signal(false);
+
+  login() {
+    this.isAuthenticated.set(true);
+  }
+
+  logout() {
+    this.isAuthenticated.set(false);
+  }
+}
