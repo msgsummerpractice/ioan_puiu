@@ -1,17 +1,14 @@
 package com.example.DBdemo.dto;
 
-import java.util.Set;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter @Setter @AllArgsConstructor @NoArgsConstructor
-public class SignInResponse {
+public class MfaSignInRequest {
+      private String username;
 
-    private String token;
-    private Set<String> role;
-    private boolean mfaEnabled;
+      private String mfaCode;
 
 }

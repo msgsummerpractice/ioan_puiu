@@ -10,5 +10,6 @@ public class SignInRequest {
 
     private String username;
     private String password;
+   // New field for MFA code
 
 }

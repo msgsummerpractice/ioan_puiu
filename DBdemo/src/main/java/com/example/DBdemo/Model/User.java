@@ -46,6 +46,9 @@ public class User {
     @Column(name = "lastname", nullable = false)
     private String lastname;
 
+    @Column(name = "opt_code")
+    private String mfaCode;
+
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_roles",
@@ -54,5 +57,7 @@ public class User {
     )
     @ToString.Exclude
     private Set<Role> roles = new HashSet<>();
+
+    
 
 }
