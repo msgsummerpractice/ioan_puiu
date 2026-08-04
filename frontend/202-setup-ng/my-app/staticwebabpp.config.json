@@ -1,0 +1,22 @@
+{
+  "navigationFallback": {
+    "rewrite": "/index.html",
+    "exclude": ["/images/*.{png,jpg,gif}", "/css/*", "/assets/*"]
+  },
+  "routes": [
+    {
+      "route": "/home",
+      "allowedRoles": ["authenticated"]
+    },
+    {
+      "route": "/home",
+      "statusCode": 302,
+      "redirect": "/login",
+      "allowedRoles": ["anonymous"]
+    },
+    {
+      "route": "/*",
+      "redirect": "/home"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+<div id="dogContainer">
+  <!-- <div *ngIf="authService.isAuthenticated() | async; else loginButton">
+    <button mat-icon-button aria-label="Login">
+      <mat-icon>person</mat-icon>
+    </button>
+  </div> -->
+  @if (authService.isAuthenticated()) {
+    <button mat-icon-button aria-label="Logout" (click)="authService.logout()">
+      <mat-icon>person</mat-icon>
+    </button>
+  }
+  <br />
+  <br />
+
+  <div>
+    <button mat-raised-button color="primary" (click)="loadAllDogs()">Load Dogs</button>
+  </div>
+
+  <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+    @for (image of dogImages(); track $index) {
+      <div class="bg-blue-500 rounded-lg p-4 pb-10">
+        <button mat-raised-button color="primary" (click)="getRandomDogImage($index)">
+          Show me a dog
+        </button>
+
+        @if (image !== undefined) {
+          <div>
+            <img [src]="image" alt="Random Dog" class="object-fill w-full h-100% rounded-lg" />
+            <div class="text-sm text-gray-700">
+              {{ 'This is the greatest description this dog will ever get!' | cute: 3 }}
+            </div>
+          </div>
+        }
+      </div>
+    }
+  </div>
+  <div>
+    <app-componenta-mea-puternica [text]="'Hello from App'"></app-componenta-mea-puternica>
+  </div>
+</div>
