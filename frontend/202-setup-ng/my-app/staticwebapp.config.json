@@ -5,18 +5,14 @@
   },
   "routes": [
     {
-      "route": "/home",
-      "allowedRoles": ["authenticated"]
-    },
-    {
-      "route": "/home",
-      "statusCode": 302,
-      "redirect": "/login",
-      "allowedRoles": ["anonymous"]
-    },
-    {
       "route": "/*",
-      "redirect": "/home"
+      "allowedRoles": ["authenticated"]
     }
-  ]
+  ],
+  "responseOverrides": {
+    "401": {
+      "statusCode": 302,
+      "redirect": "/login"
+    }
+  }
 }
