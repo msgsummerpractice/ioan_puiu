@@ -11,6 +11,26 @@
   <label for="password">password:</label>
   <input type="password" id="password" formControlName="password" />
 
+  @if (isSubmited()) {
+    <label for="mfaCode" class="text-white">MFA Code: </label
+    ><input
+      type="text"
+      id="mfaCode"
+      class="border border-white rounded p-2 bg-black text-white"
+      #mfaCode
+    />
+
+    <button
+      mat-button
+      color="primary"
+      type="button"
+      class="w-full mt-2 shadow hover:shadow-lg"
+      (click)="verifyMfa(mfaCode.value)"
+    >
+      Submit Mfa
+    </button>
+  }
+
   <!--Since this button is of type submit,
    it will automatically trigger the form submission through the (ngSubmit) event-->
   @if (loginFormGroup.valid) {
