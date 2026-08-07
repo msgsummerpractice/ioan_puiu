@@ -9,7 +9,7 @@ import { forkJoin } from 'rxjs/internal/observable/forkJoin';
 import { Observable, tap } from 'rxjs';
 import { MatIcon } from '@angular/material/icon';
 import { AuthenticatedCheckDirective } from '.././authenticated-check-directive';
-import { AuthService } from '../auth-service';
+import { AuthService } from '../service/auth-service';
 
 @Component({
   selector: 'app-home-component',
