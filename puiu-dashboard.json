@@ -1,0 +1,333 @@
+{
+  "properties": {
+    "lenses": [
+      {
+        "order": 0,
+        "parts": [
+          {
+            "position": {
+              "x": 0,
+              "y": 0,
+              "colSpan": 6,
+              "rowSpan": 4
+            },
+            "metadata": {
+              "inputs": [
+                {
+                  "name": "options",
+                  "isOptional": true
+                },
+                {
+                  "name": "sharedTimeRange",
+                  "isOptional": true
+                }
+              ],
+              "type": "Extension/HubsExtension/PartType/MonitorChartPart",
+              "settings": {
+                "content": {
+                  "options": {
+                    "chart": {
+                      "metrics": [
+                        {
+                          "resourceMetadata": {
+                            "id": "/subscriptions/bff82f66-027a-4464-a242-3e971760bb2e/resourceGroups/Puiu_Ioan_Alexandru/providers/Microsoft.App/containerApps/puiu-backend"
+                          },
+                          "name": "CpuPercentage",
+                          "aggregationType": 4,
+                          "namespace": "microsoft.app/containerapps",
+                          "metricVisualization": {
+                            "displayName": "CPU Usage Percentage (Preview)",
+                            "resourceDisplayName": "puiu-backend"
+                          }
+                        },
+                        {
+                          "resourceMetadata": {
+                            "id": "/subscriptions/bff82f66-027a-4464-a242-3e971760bb2e/resourceGroups/Puiu_Ioan_Alexandru/providers/Microsoft.App/containerApps/puiu-backend"
+                          },
+                          "name": "MemoryPercentage",
+                          "aggregationType": 4,
+                          "namespace": "microsoft.app/containerapps",
+                          "metricVisualization": {
+                            "displayName": "Memory Percentage (Preview)",
+                            "resourceDisplayName": "puiu-backend"
+                          }
+                        },
+                        {
+                          "resourceMetadata": {
+                            "id": "/subscriptions/bff82f66-027a-4464-a242-3e971760bb2e/resourceGroups/Puiu_Ioan_Alexandru/providers/Microsoft.App/containerApps/puiu-backend"
+                          },
+                          "name": "TxBytes",
+                          "aggregationType": 1,
+                          "namespace": "microsoft.app/containerapps",
+                          "metricVisualization": {
+                            "displayName": "Network Out Bytes",
+                            "resourceDisplayName": "puiu-backend"
+                          }
+                        },
+                        {
+                          "resourceMetadata": {
+                            "id": "/subscriptions/bff82f66-027a-4464-a242-3e971760bb2e/resourceGroups/Puiu_Ioan_Alexandru/providers/Microsoft.App/containerApps/puiu-backend"
+                          },
+                          "name": "RxBytes",
+                          "aggregationType": 1,
+                          "namespace": "microsoft.app/containerapps",
+                          "metricVisualization": {
+                            "displayName": "Network In Bytes",
+                            "resourceDisplayName": "puiu-backend"
+                          }
+                        }
+                      ],
+                      "title": "puiu-backend",
+                      "titleKind": 2,
+                      "visualization": {
+                        "chartType": 2,
+                        "legendVisualization": {
+                          "isVisible": true,
+                          "position": 2,
+                          "hideHoverCard": false,
+                          "hideLabelNames": true
+                        },
+                        "axisVisualization": {
+                          "x": {
+                            "isVisible": true,
+                            "axisType": 2
+                          },
+                          "y": {
+                            "isVisible": true,
+                            "axisType": 1
+                          }
+                        },
+                        "disablePinning": true
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "position": {
+              "x": 6,
+              "y": 0,
+              "colSpan": 6,
+              "rowSpan": 4
+            },
+            "metadata": {
+              "inputs": [
+                {
+                  "name": "options",
+                  "isOptional": true
+                },
+                {
+                  "name": "sharedTimeRange",
+                  "isOptional": true
+                }
+              ],
+              "type": "Extension/HubsExtension/PartType/MonitorChartPart",
+              "settings": {
+                "content": {
+                  "options": {
+                    "chart": {
+                      "metrics": [
+                        {
+                          "resourceMetadata": {
+                            "id": "/subscriptions/bff82f66-027a-4464-a242-3e971760bb2e/resourceGroups/Puiu_Ioan_Alexandru/providers/Microsoft.App/containerApps/puiu-db"
+                          },
+                          "name": "CpuPercentage",
+                          "aggregationType": 4,
+                          "namespace": "microsoft.app/containerapps",
+                          "metricVisualization": {
+                            "displayName": "CPU Usage Percentage (Preview)",
+                            "resourceDisplayName": "puiu-db"
+                          }
+                        },
+                        {
+                          "resourceMetadata": {
+                            "id": "/subscriptions/bff82f66-027a-4464-a242-3e971760bb2e/resourceGroups/Puiu_Ioan_Alexandru/providers/Microsoft.App/containerApps/puiu-db"
+                          },
+                          "name": "MemoryPercentage",
+                          "aggregationType": 4,
+                          "namespace": "microsoft.app/containerapps",
+                          "metricVisualization": {
+                            "displayName": "Memory Percentage (Preview)",
+                            "resourceDisplayName": "puiu-db"
+                          }
+                        },
+                        {
+                          "resourceMetadata": {
+                            "id": "/subscriptions/bff82f66-027a-4464-a242-3e971760bb2e/resourceGroups/Puiu_Ioan_Alexandru/providers/Microsoft.App/containerApps/puiu-db"
+                          },
+                          "name": "RxBytes",
+                          "aggregationType": 1,
+                          "namespace": "microsoft.app/containerapps",
+                          "metricVisualization": {
+                            "displayName": "Network In Bytes",
+                            "resourceDisplayName": "puiu-db"
+                          }
+                        },
+                        {
+                          "resourceMetadata": {
+                            "id": "/subscriptions/bff82f66-027a-4464-a242-3e971760bb2e/resourceGroups/Puiu_Ioan_Alexandru/providers/Microsoft.App/containerApps/puiu-db"
+                          },
+                          "name": "TxBytes",
+                          "aggregationType": 1,
+                          "namespace": "microsoft.app/containerapps",
+                          "metricVisualization": {
+                            "displayName": "Network Out Bytes",
+                            "resourceDisplayName": "puiu-db"
+                          }
+                        }
+                      ],
+                      "title": "puiu-db",
+                      "titleKind": 2,
+                      "visualization": {
+                        "chartType": 2,
+                        "legendVisualization": {
+                          "isVisible": true,
+                          "position": 2,
+                          "hideHoverCard": false,
+                          "hideLabelNames": true
+                        },
+                        "axisVisualization": {
+                          "x": {
+                            "isVisible": true,
+                            "axisType": 2
+                          },
+                          "y": {
+                            "isVisible": true,
+                            "axisType": 1
+                          }
+                        },
+                        "disablePinning": true
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "position": {
+              "x": 12,
+              "y": 0,
+              "colSpan": 6,
+              "rowSpan": 4
+            },
+            "metadata": {
+              "inputs": [
+                {
+                  "name": "options",
+                  "isOptional": true
+                },
+                {
+                  "name": "sharedTimeRange",
+                  "isOptional": true
+                }
+              ],
+              "type": "Extension/HubsExtension/PartType/MonitorChartPart",
+              "settings": {
+                "content": {
+                  "options": {
+                    "chart": {
+                      "metrics": [
+                        {
+                          "resourceMetadata": {
+                            "id": "/subscriptions/bff82f66-027a-4464-a242-3e971760bb2e/resourceGroups/Puiu_Ioan_Alexandru/providers/Microsoft.Web/staticSites/DogGallery"
+                          },
+                          "name": "SiteHits",
+                          "aggregationType": 1,
+                          "namespace": "microsoft.web/staticsites",
+                          "metricVisualization": {
+                            "displayName": "SiteHits",
+                            "resourceDisplayName": "DogGallery"
+                          }
+                        },
+                        {
+                          "resourceMetadata": {
+                            "id": "/subscriptions/bff82f66-027a-4464-a242-3e971760bb2e/resourceGroups/Puiu_Ioan_Alexandru/providers/Microsoft.Web/staticSites/DogGallery"
+                          },
+                          "name": "SiteErrors",
+                          "aggregationType": 1,
+                          "namespace": "microsoft.web/staticsites",
+                          "metricVisualization": {
+                            "displayName": "SiteErrors",
+                            "resourceDisplayName": "DogGallery"
+                          }
+                        }
+                      ],
+                      "title": "puiu-frontend",
+                      "titleKind": 2,
+                      "visualization": {
+                        "chartType": 2,
+                        "legendVisualization": {
+                          "isVisible": true,
+                          "position": 2,
+                          "hideHoverCard": false,
+                          "hideLabelNames": true
+                        },
+                        "axisVisualization": {
+                          "x": {
+                            "isVisible": true,
+                            "axisType": 2
+                          },
+                          "y": {
+                            "isVisible": true,
+                            "axisType": 1
+                          }
+                        },
+                        "disablePinning": true
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "metadata": {
+      "model": {
+        "timeRange": {
+          "value": {
+            "relative": {
+              "duration": 24,
+              "timeUnit": 1
+            }
+          },
+          "type": "MsPortalFx.Composition.Configuration.ValueTypes.TimeRange"
+        },
+        "filterLocale": {
+          "value": "en-us"
+        },
+        "filters": {
+          "value": {
+            "MsPortalFx_TimeRange": {
+              "model": {
+                "format": "utc",
+                "granularity": "auto",
+                "relative": "24h"
+              },
+              "displayCache": {
+                "name": "UTC Time",
+                "value": "Past 24 hours"
+              },
+              "filteredPartIds": [
+                "StartboardPart-MonitorChartPart-2088a9f7-9603-40d7-ba63-59fdb1a3d183",
+                "StartboardPart-MonitorChartPart-2088a9f7-9603-40d7-ba63-59fdb1a3d196",
+                "StartboardPart-MonitorChartPart-2088a9f7-9603-40d7-ba63-59fdb1a3d1a2"
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "name": "puiu-dashboard",
+  "type": "Microsoft.Portal/dashboards",
+  "location": "INSERT LOCATION",
+  "tags": {
+    "hidden-title": "puiu-dashboard"
+  },
+  "apiVersion": "2022-12-01-preview"
+}
